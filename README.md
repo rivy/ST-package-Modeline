@@ -1,6 +1,6 @@
-# Emacs-like Sublime Modeline
+# Modeline for Sublime Text
 
-Parse Emacs-like modelines, and set buffer-local settings for Sublime Text 2 and 3.
+Parse Emacs-like modelines, and set buffer-local settings for Sublime Text 2 and/or 3.
 
 
 ## Installing
@@ -10,7 +10,7 @@ I highly recommend installing via [Package Control](http://wbond.net/sublime_pac
 
 ## Usage
 
-Somewhere within the first five lines of a file, add a line matching the following:
+Somewhere within the first or last five lines of a file, add a line matching the following:
 
 	-*- key: value; key2: value2 -*-
 
@@ -43,6 +43,8 @@ to `user_mode_mappings`.
 
 ## Alternatives
 
+* [Emacs-like modelines](https://github.com/SublimeText/EmacsModelines)
+	* the prototype for  this addon
 * [Vim-style modelines](https://github.com/SublimeText/Modelines)
 * [More Emacs-style hacks](http://software.clapper.org/ST2EmacsMiscellanea/)
 
