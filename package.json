@@ -1,12 +1,18 @@
 {
-	"name": "Modeline (rivy)",
-	"details": "https://github.com/rivy/ST-package-Modeline",
-	"labels": ["formatting"],
-	"releases":
+	"schema_version": "2.0",
+	"packages":
 	[
 		{
-			"sublime_text": "*",
-			"details": "https://github.com/rivy/ST-package-Modeline/tree/master"
+			"name": "Modeline (rivy)",
+			"details": "https://github.com/rivy/ST-package-Modeline",
+			"labels": ["formatting"],
+			"releases":
+			[
+				{
+					"sublime_text": "*",
+					"details": "https://github.com/rivy/ST-package-Modeline/tree/master"
+				}
+			]
 		}
 	]
 }
