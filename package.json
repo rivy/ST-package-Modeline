@@ -3,9 +3,9 @@
 	"packages":
 	[
 		{
-			"name": "Modeline (rivy)",
+			"name": "Modeline",
 			"details": "https://github.com/rivy/ST-package-Modeline",
-			"labels": ["formatting"],
+			"labels": ["text manipulation", "formatting", "emacs"],
 			"releases":
 			[
 				{
