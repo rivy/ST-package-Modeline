@@ -1,16 +1,25 @@
 # Modeline for Sublime Text
 
-Parse Emacs-like modelines, and set buffer-local settings for Sublime Text 2 and/or 3.
+Parse Emacs-like modelines, setting per-buffer/local settings for Sublime Text 2 and/or 3.
 
 
 ## Installing
 
-I highly recommend installing via [Package Control](http://wbond.net/sublime_packages/package_control).
+Installation via [Package Control](http://wbond.net/sublime_packages/package_control) is the recommended method.
+
+Add
+
+	"repositories":
+	[
+		"https://raw.github.com/rivy/ST-channel/master/repository.json"
+	],
+
+to the Package Control User configuration file (at "Preferences / Package Settings / Package Control / Settings - User").
 
 
 ## Usage
 
-Somewhere within the first or last five lines of a file, add a line matching the following:
+Somewhere within the first or last `N` lines (default == 5) of a file, add a line matching the following:
 
 	-*- key: value; key2: value2 -*-
 
@@ -30,29 +39,31 @@ value you can run this command in the console (ctrl+\`) when the syntax you want
 use:
 
 	view.settings().get('syntax')
-	# u'Packages/Graphviz/DOT.tmLanguage' -> 'DOT' is the mode value needed.
+	# u'Packages/Graphviz/DOT.tmLanguage' or u'Packages/Graphviz/DOT.sublime-syntax'
+	# =>> 'DOT' is the mode value
 
 If you want to use the same mode line settings with an emacs user you might need
 to set up mappings from the emacs names to the sublime syntax names. To do this
-look at the `mode_mappings` key in the settings file (which you can edit via the
-menu Preferences, Package Settings, Emacs Modelines). As an example this package
-ships with a mapping from "Bash" (emacs) to "Shell-Unix-Generic" (sublime).
+look at the `mode_map` key in the settings file (which you can open via the
+menu at "Preferences / Package Settings / Modeline / Settings - Default"). As an example this
+package ships with a mapping from "Bash" (emacs) to "Shell-Unix-Generic" (sublime).
 
-If you want to preserve the default `mode_mappings`, you can also add your own
-to `user_mode_mappings`.
+If you want to replace the default mode map, you can overwrite the `mode_map_default` key.
+
 
 ## Alternatives
 
-* [Emacs-like modelines](https://github.com/SublimeText/EmacsModelines)
-	* the prototype for  this addon
+* [Emacs-like Sublime Modeline](https://github.com/kvs/STEmacsModelines)
+	* the original prototype for this addon
 * [Vim-style modelines](https://github.com/SublimeText/Modelines)
-* [More Emacs-style hacks](http://software.clapper.org/ST2EmacsMiscellanea/)
-
+<!--(missing):* [More Emacs-style hacks](http://software.clapper.org/ST2EmacsMiscellanea/)-->
 
 ## Meta
 
-Created by Kenneth Vestergaard.
+Re-written by [Roy Ivy III](https://github.com/rivy).
 
-Patches contributed by [Ash Berlin](https://github.com/ashb) and [Roy Ivy III](https://github.com/rivy).
+Originally created by [Kenneth Vestergaard](https://github.com/kvs).
 
-Released under the MIT License: http://www.opensource.org/licenses/mit-license.php
+Patches contributed by [Ash Berlin](https://github.com/ashb).
+
+Released under the MIT License: http://www.opensource.org/licenses/mit-license.php .
