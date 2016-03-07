@@ -1,6 +1,5 @@
 {
   // Built-in mode mappings
-
   "mode_map_default" : {
     "bash": "Shell-Unix-Generic",
     "batch": "Batch File",
