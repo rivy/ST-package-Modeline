@@ -39,6 +39,7 @@ DEFAULT_MODELINE_REGION_SIZE = 5 	# lines
 
 ###
 
+import itertools
 import re
 import os
 import time
@@ -151,19 +152,24 @@ class Preferences:
 		cls.log.debug( 'modeline_region = %s', cls.var.modeline_region )
 		cls.log.debug( 'modeline_region_size = %d', cls.var.modeline_region_size )
 
-		## load known modes from available syntax (*.tmLanguage) files
+		## load known modes from available syntax files (*.tmLanguage and *.sublime-syntax)
 		cls.var.modes = {}
-		for syntax_file in sublime.find_resources( '*.tmLanguage' ):
-			name = os.path.splitext( os.path.basename( syntax_file ) )[0].lower()
-			cls.var.modes[name] = syntax_file
-			cls.log.trace( "%s [@ %s]", name, syntax_file )
+		syntax_file_patterns = [ '*.tmLanguage', '*.sublime-syntax' ]
+		syntax_files = itertools.chain.from_iterable( sublime.find_resources( pattern ) for pattern in syntax_file_patterns )
+		for syntax_file in syntax_files:
+			mode = os.path.splitext( os.path.basename( syntax_file ) )[0].lower()
+			cls.var.modes[mode] = syntax_file
+			cls.log.trace( "%s [@ %s]", mode, syntax_file )
 		### load mode maps
-		if cls.settings.has( 'mode_map_default' ):
-			for modeline, syntax in cls.settings.get( 'mode_map_default' ).items():
-				cls.var.modes[modeline] = cls.var.modes[syntax.lower()]
-		if cls.settings.has( 'mode_map' ):
-			for modeline, syntax in cls.settings.get( 'mode_map' ).items():
-				cls.var.modes[modeline] = cls.var.modes[syntax.lower()]
+		mode_map_keys = [ 'mode_map_default', 'mode_map' ]
+		for mode_map_key in mode_map_keys:
+			if cls.settings.has( mode_map_key ):
+				for alias, mode in cls.settings.get( mode_map_key ).items():
+					alias = alias.lower()
+					mode = mode.lower()
+					if mode in cls.var.modes:
+						cls.log.trace( 'modes[%s] => modes[%s]', alias, mode )
+						cls.var.modes[alias] = cls.var.modes[mode]
 
 		cls.is_loaded = True
 		cls.log.debug( '.end' )
